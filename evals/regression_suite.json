@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "skill_name": "cr-st-expert",
+  "cases": [
+    {
+      "id": "RG01",
+      "title": "FUNCTION_BLOCK mirror manifest",
+      "expected_status": "recommend",
+      "expected_files": [
+        "FB_MotorController.st"
+      ],
+      "request": {
+        "request_id": "RG01",
+        "target_platform": "CODESYS / CODESYS V3.5",
+        "object_family": "FUNCTION_BLOCK",
+        "object_name": "FB_MotorController",
+        "functional_description": "伺服电机控制功能块。",
+        "delivery_mode": "codesys_text",
+        "io": {
+          "inputs": [{"name": "bEnable", "type": "BOOL"}],
+          "outputs": [{"name": "bRunning", "type": "BOOL"}]
+        },
+        "child_objects": {
+          "methods": [{"name": "M_Init"}, {"name": "M_ValidateSpeed"}],
+          "actions": [{"name": "A_ResetFault"}],
+          "properties": [{"name": "P_TargetSpeed", "type": "INT", "accessors": ["GET", "SET"]}]
+        }
+      }
+    },
+    {
+      "id": "RG02",
+      "title": "mirror mode accepts child objects",
+      "expected_status": "recommend",
+      "expected_files": [
+        "FB_WinderControl.st"
+      ],
+      "request": {
+        "request_id": "RG02",
+        "target_platform": "CODESYS / CODESYS V3.5",
+        "object_family": "FUNCTION_BLOCK",
+        "object_name": "FB_WinderControl",
+        "functional_description": "卷绕张力控制功能块。",
+        "delivery_mode": "codesys_text",
+        "child_objects": {
+          "methods": [{"name": "M_Init"}],
+          "actions": [{"name": "A_Reset"}],
+          "properties": [{"name": "P_Status", "type": "DINT", "accessors": ["GET", "SET"]}]
+        }
+      }
+    },
+    {
+      "id": "RG03",
+      "title": "prefix mismatch should clarify",
+      "expected_status": "clarify",
+      "request": {
+        "request_id": "RG03",
+        "target_platform": "CODESYS / CODESYS V3.5",
+        "object_family": "FUNCTION_BLOCK",
+        "object_name": "MotorController",
+        "functional_description": "电机控制。",
+        "delivery_mode": "codesys_text"
+      }
+    }
+  ]
+}

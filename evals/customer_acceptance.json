@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "skill_name": "cr-st-expert",
+  "cases": [
+    {
+      "id": "CA01",
+      "title": "program request stays one mirror file",
+      "expected_status": "recommend",
+      "expected_files": ["PRG_LineMain.st"],
+      "request": {
+        "request_id": "CA01",
+        "target_platform": "CODESYS / CODESYS V3.5",
+        "object_family": "PROGRAM",
+        "object_name": "PRG_LineMain",
+        "functional_description": "产线主程序。",
+        "delivery_mode": "codesys_text"
+      }
+    },
+    {
+      "id": "CA02",
+      "title": "unsupported platform should block",
+      "expected_status": "block",
+      "request": {
+        "request_id": "CA02",
+        "target_platform": "TwinCAT 3",
+        "object_family": "FUNCTION_BLOCK",
+        "object_name": "FB_MotorController",
+        "functional_description": "电机控制。",
+        "delivery_mode": "codesys_text"
+      }
+    },
+    {
+      "id": "CA03",
+      "title": "missing functional description should clarify",
+      "expected_status": "clarify",
+      "request": {
+        "request_id": "CA03",
+        "target_platform": "CODESYS / CODESYS V3.5",
+        "object_family": "FUNCTION",
+        "object_name": "F_LimitSpeed",
+        "delivery_mode": "codesys_text"
+      }
+    },
+    {
+      "id": "CA04",
+      "title": "legacy multi-file request should clarify",
+      "expected_status": "clarify",
+      "request": {
+        "request_id": "CA04",
+        "target_platform": "CODESYS / CODESYS V3.5",
+        "object_family": "FUNCTION_BLOCK",
+        "object_name": "FB_MotorController",
+        "functional_description": "电机控制。",
+        "delivery_mode": "multi_file",
+        "child_objects": {
+          "methods": [{"name": "M_Init"}],
+          "actions": [{"name": "A_ResetFault"}],
+          "properties": [{"name": "P_TargetSpeed", "type": "INT", "accessors": ["GET", "SET"]}]
+        }
+      }
+    }
+  ]
+}

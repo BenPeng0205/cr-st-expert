@@ -1,0 +1,20 @@
+{
+  "skill_name": "cr-st-expert",
+  "tests": [
+    {
+      "id": "review_without_tools",
+      "prompt": "没有 Python、IDE 或其他工具。请按本技能审查一个在 VAR_TEMP 中声明 TON、VAR_INPUT 无默认值、CASE 无 ELSE 的功能块。",
+      "expected": "直接完成规范审查，指出实例生命周期、输入默认值、非法状态处理风险，注明脚本未执行，不要求安装工具。"
+    },
+    {
+      "id": "plain_generation",
+      "prompt": "按本技能规范编写普通启停功能块，使用 BOOL 输入和诊断输出，不调用外部库。",
+      "expected": "按命名、接口、注释和安全默认值编写，不调用领域技能，不声称编译通过。"
+    },
+    {
+      "id": "unknown_interface",
+      "prompt": "请规范审查一个调用未知厂商库的 ST 片段，没有库接口资料。",
+      "expected": "仍审查已知的命名、格式和通用语义；不编造参数，不声明调用正确，说明接口需另行确认。"
+    }
+  ]
+}

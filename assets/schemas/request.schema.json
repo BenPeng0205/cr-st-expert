@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "cr-st-expert request",
+  "type": "object",
+  "required": [
+    "request_id",
+    "target_platform",
+    "object_family",
+    "object_name",
+    "functional_description",
+    "delivery_mode"
+  ],
+  "properties": {
+    "request_id": { "type": "string", "minLength": 1 },
+    "target_platform": { "type": "string", "minLength": 1 },
+    "object_family": {
+      "type": "string",
+      "enum": ["FUNCTION_BLOCK", "FUNCTION", "PROGRAM", "GVL", "ENUM", "STRUCT"]
+    },
+    "object_name": { "type": "string", "minLength": 1 },
+    "functional_description": { "type": "string", "minLength": 1 },
+    "delivery_mode": { "type": "string", "enum": ["codesys_text", "single_file"] },
+    "io": {
+      "type": "object",
+      "properties": {
+        "inputs": { "type": "array", "items": { "type": "object" } },
+        "outputs": { "type": "array", "items": { "type": "object" } }
+      },
+      "additionalProperties": true
+    },
+    "child_objects": {
+      "type": "object",
+      "properties": {
+        "methods": { "type": "array", "items": { "type": "object" } },
+        "actions": { "type": "array", "items": { "type": "object" } },
+        "properties": { "type": "array", "items": { "type": "object" } }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,5 @@
+{
+  "name": "rule_maintenance_criteria",
+  "dimensions": ["scope", "clarity", "testability", "privacy"],
+  "hard_failures": ["编造接口", "隐式外部依赖", "泄露本机或用户信息", "静态检查冒充功能验证"]
+}

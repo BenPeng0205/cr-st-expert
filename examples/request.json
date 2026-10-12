@@ -1,0 +1,47 @@
+{
+  "request_id": "RG01",
+  "target_platform": "CODESYS / CODESYS V3.5",
+  "object_family": "FUNCTION_BLOCK",
+  "object_name": "FB_MotorController",
+  "functional_description": "伺服电机控制功能块。",
+  "delivery_mode": "codesys_text",
+  "io": {
+    "inputs": [
+      {
+        "name": "bEnable",
+        "type": "BOOL"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bRunning",
+        "type": "BOOL"
+      }
+    ]
+  },
+  "child_objects": {
+    "methods": [
+      {
+        "name": "M_Init"
+      },
+      {
+        "name": "M_ValidateSpeed"
+      }
+    ],
+    "actions": [
+      {
+        "name": "A_ResetFault"
+      }
+    ],
+    "properties": [
+      {
+        "name": "P_TargetSpeed",
+        "type": "INT",
+        "accessors": [
+          "GET",
+          "SET"
+        ]
+      }
+    ]
+  }
+}

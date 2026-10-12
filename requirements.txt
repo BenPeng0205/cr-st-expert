@@ -1,0 +1,5 @@
+# Runtime
+# The current implementation uses Python standard library only.
+
+# Optional developer tooling
+# pytest is intentionally not required; tests run with unittest.

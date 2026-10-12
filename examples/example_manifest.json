@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "skill_name": "cr-st-expert",
+  "bundles": [
+    {
+      "bundle_id": "motor_controller_mirror_roundtrip",
+      "description": "完整覆盖 FUNCTION_BLOCK + Method + Action + Property 聚合段的 CODESYS ST text 黄金样本。",
+      "target_platform": "CODESYS / CODESYS V3.5",
+      "protocol": "codesys_st_text_v1",
+      "verification_level": "protocol_gate",
+      "promotion_evidence": [
+        "通过 scripts/protocol_validator.py mirror 协议校验",
+        "通过 scripts/st_semantic_linter.py 语义 lint",
+        "通过 evals/run_delivery_gate.py 统一门禁"
+      ],
+      "files": [
+        { "path": "E_MotorState.st", "logical_path": "DUTs/E_MotorState.st", "family": "enum" },
+        { "path": "E_SystemState.st", "logical_path": "DUTs/E_SystemState.st", "family": "enum" },
+        { "path": "ST_MotorData.st", "logical_path": "DUTs/ST_MotorData.st", "family": "struct" },
+        { "path": "GVL_System.st", "logical_path": "GVLs/GVL_System.st", "family": "gvl" },
+        { "path": "F_LimitSpeed.st", "logical_path": "POUs/FCs/F_LimitSpeed.st", "family": "function" },
+        { "path": "FB_MotorController.st", "logical_path": "POUs/FBs/FB_MotorController.st", "family": "function_block" },
+        { "path": "PRG_Main.st", "logical_path": "POUs/PRGs/PRG_Main.st", "family": "program" }
+      ],
+      "coverage": [
+        "single_function",
+        "single_program",
+        "single_enum",
+        "single_struct",
+        "single_gvl",
+        "single_fb",
+        "aggregated_method",
+        "aggregated_action",
+        "aggregated_property_get_set",
+        "codesys_st_text_ready"
+      ]
+    }
+  ]
+}

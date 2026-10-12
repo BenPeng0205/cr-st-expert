@@ -1,0 +1,17 @@
+name: cr-st-expert
+command: cr-st-expert
+version: 4.0.0
+description: 独立的 CODESYS ST 编程规范
+requires_tools: false
+input: natural_language_or_st_code
+optional_script: scripts/main.py
+about: |
+  加载技能后，按命名、注释、格式、POU、接口、类型及扫描周期规范生成、修改和审查代码。
+  不要求其他技能、IDE、CLI、Python 或记忆服务。
+  不执行编译、仿真、工程写入或设备操作，不提供领域库接口知识。
+workflow:
+  - 读取技能与规范资料
+  - 确认对象、接口、依赖声明和审查范围
+  - 人工生成、修改或审查
+  - 按用户选择执行可选静态检查
+  - 输出规范问题与验证边界

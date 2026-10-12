@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "cr-st-expert result",
+  "type": "object",
+  "required": [
+    "status",
+    "summary",
+    "clarifications",
+    "blocking_reasons",
+    "assumptions",
+    "trace",
+    "artifacts"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["recommend", "clarify", "block"]
+    },
+    "summary": { "type": "string" },
+    "clarifications": { "type": "array", "items": { "type": "string" } },
+    "blocking_reasons": { "type": "array", "items": { "type": "string" } },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "trace": { "type": "array", "items": { "type": "object" } },
+    "artifacts": { "type": "array", "items": { "type": "object" } }
+  },
+  "additionalProperties": true
+}

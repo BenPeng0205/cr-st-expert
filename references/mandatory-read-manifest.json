@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "skill_name": "cr-st-expert",
+  "purpose": "人工规范审查所需的本技能资料，不要求执行脚本。",
+  "fail_closed": true,
+  "mandatory_read_order": [
+    {
+      "path": "SKILL.md",
+      "reason": "独立规范入口、工作流程和验证边界。"
+    },
+    {
+      "path": "references/naming.md",
+      "reason": "公共对象、变量、枚举元素和全局变量命名规则。"
+    },
+    {
+      "path": "references/style.md",
+      "reason": "注释、缩进、对齐、实现区、属性声明和格式规则。"
+    },
+    {
+      "path": "rules/formatting.md",
+      "reason": "格式硬规则和 CODESYS mirror 聚合段格式。"
+    },
+    {
+      "path": "rules/commenting.md",
+      "reason": "工程师级注释质量、文件头和实现区注释块规则。"
+    },
+    {
+      "path": "rules/naming.md",
+      "reason": "规则包命名红线，防止公共对象和变量命名退化。"
+    },
+    {
+      "path": "rules/red-lines.md",
+      "reason": "禁止项和交付红线。"
+    },
+    {
+      "path": "references/rules/pou-design.md",
+      "reason": "POU 类型选择、FB 接口、安全默认值和诊断输出规则。"
+    },
+    {
+      "path": "references/rules/execution-semantics.md",
+      "reason": "状态型 FB、定时器、触发器、状态机和扫描周期语义。"
+    },
+    {
+      "path": "references/rules/interface-contract.md",
+      "reason": "VAR_INPUT、VAR_OUTPUT、VAR_IN_OUT、指针接口和公共契约规则。"
+    },
+    {
+      "path": "references/rules/alarm-diagnostics.md",
+      "reason": "错误码、诊断上下文和复位边界规则。"
+    },
+    {
+      "path": "references/rules/type-system.md",
+      "reason": "IEC 类型系统、显式转换和跨类型赋值风险。"
+    },
+    {
+      "path": "references/iec-prohibitions.md",
+      "reason": "IEC ST 禁止用法和高风险写法。"
+    },
+    {
+      "path": "references/library-dependency-contract.md",
+      "reason": "库依赖声明格式和未知接口边界。"
+    }
+  ],
+  "description": "独立 ST 规范资料清单；不要求执行任何工具。",
+  "optional_review_gate": {
+    "command": "python -X utf8 scripts/st_semantic_linter.py --root <CODESYS镜像源码根> --strict --output <证据报告.json>",
+    "scope": "目标根目录下所有 .st 文件",
+    "minimum_result": "checked_files > 0 且 passed = true",
+    "required": false
+  }
+}

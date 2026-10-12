@@ -1,0 +1,91 @@
+{
+  "schema_version": "3.0",
+  "skill_name": "cr-st-expert",
+  "evals": [
+    {
+      "id": 1,
+      "title": "FUNCTION_BLOCK mirror request is recommended",
+      "prompt": "为带 Method / Action / Property 的 FUNCTION_BLOCK 规划 CODESYS ST text 结果。",
+      "expected_output": "输出 recommend，并只给出父 FB 文件，同时给出内部 Method / Action / Property 段落清单。",
+      "files": [
+        "FB_MotorController.st"
+      ],
+      "tags": [
+        "regression",
+        "manifest",
+        "function_block",
+        "mirror"
+      ],
+      "rule_refs": [
+        {
+          "id": "red-line-mirror-only",
+          "path": "rules/red-lines.md",
+          "section": "1. 协议红线"
+        }
+      ],
+      "coverage": "function_block_mirror_manifest",
+      "outcome": "recommend"
+    },
+    {
+      "id": 2,
+      "title": "legacy multi-file request requires clarification",
+      "prompt": "用户要求 multi_file，并希望输出 FB_Name.M_Name.st 等独立子文件。",
+      "expected_output": "可选规划器返回 clarify；AI 仍可直接审查其他布局，无外部技能依赖。",
+      "files": [],
+      "tags": [
+        "regression",
+        "boundary",
+        "clarify"
+      ],
+      "rule_refs": [
+        {
+          "id": "legacy-multifile-boundary",
+          "path": "docs/product-contract.md",
+          "section": "5. 强制协议"
+        }
+      ],
+      "coverage": "legacy_multifile_boundary",
+      "outcome": "clarify"
+    },
+    {
+      "id": 3,
+      "title": "prefix mismatch requires clarification",
+      "prompt": "对象类型是 FUNCTION_BLOCK，但对象名未使用 FB_ 前缀。",
+      "expected_output": "输出 clarify，并要求修正命名。",
+      "files": [],
+      "tags": [
+        "regression",
+        "naming",
+        "clarify"
+      ],
+      "rule_refs": [
+        {
+          "id": "prefix-rule",
+          "path": "rules/naming.md",
+          "section": "1. 顶层对象前缀"
+        }
+      ],
+      "coverage": "naming_prefix_guard",
+      "outcome": "clarify"
+    }
+  ],
+  "suites": [
+    {
+      "id": "regression",
+      "manifest": "evals/regression_suite.json",
+      "runner": "evals/run_regression.py",
+      "purpose": "验证结构化预检状态机、mirror 文件清单和段落清单规划。"
+    },
+    {
+      "id": "customer_acceptance",
+      "manifest": "evals/customer_acceptance.json",
+      "runner": "evals/run_customer_acceptance.py",
+      "purpose": "验证典型用户请求在当前产品边界内的结论是否正确。"
+    },
+    {
+      "id": "delivery_gate",
+      "runner": "evals/run_delivery_gate.py",
+      "purpose": "运行完整发布门禁。"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+skill:
+  name: cr-st-expert
+  display_name: CODESYS ST Expert
+  version: 4.0.0
+  tool_type: skill
+  maturity: L3
+  release_stage: source_verified
+  release_eligibility: NOT_RELEASE_ELIGIBLE
+  runtime_dependencies: []
+  optional_python: ">=3.10"
+  protocol: codesys_st_text_v1
+  supported_platforms:
+    - CODESYS / CODESYS V3.5
+
+optional_planner_input:
+  schema: assets/schemas/request.schema.json
+  required_fields:
+    - request_id
+    - target_platform
+    - object_family
+    - object_name
+    - functional_description
+    - delivery_mode
+  supported_families:
+    - FUNCTION_BLOCK
+    - FUNCTION
+    - PROGRAM
+    - GVL
+    - ENUM
+    - STRUCT
+
+optional_planner_output:
+  schema: assets/schemas/result.schema.json
+  statuses:
+    - recommend
+    - clarify
+    - block
+  required_fields:
+    - status
+    - summary
+    - clarifications
+    - blocking_reasons
+    - assumptions
+    - trace
+    - artifacts
+
+validation:
+  example_manifest: examples/example_manifest.json
+  regression_suite: evals/regression_suite.json
+  customer_acceptance_suite: evals/customer_acceptance.json
+  delivery_gate: evals/run_delivery_gate.py
