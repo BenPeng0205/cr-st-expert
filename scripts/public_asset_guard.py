@@ -4,6 +4,8 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import struct
+import zlib
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -13,7 +15,11 @@ PUBLIC_FILES = (
     "docs/product-contract.md", "docs/golden-sample-policy.md",
     "docs/离线POU测试规则.md",
 )
-PUBLIC_DIRS = ("assets", "rules", "references", "templates", "examples", "scripts", "test", "evals")
+PUBLIC_DIRS = ("assets", "docs/images", "rules", "references", "templates", "examples", "scripts", "test", "evals")
+PUBLIC_IMAGE_FILES = {"docs/images/cover-en.png", "docs/images/cover-zh.png"} | {
+    f"docs/images/rule-{number:02}-{language}{layout}.png"
+    for number in range(1, 9) for language in ("en", "zh") for layout in ("", "-mobile")
+}
 SKIP_PARTS = {"__pycache__", ".pytest_cache", "output", ".git"}
 PRIVATE_PATH = re.compile(r"(?<![A-Za-z0-9])(?:[A-Za-z]:[\\/]|/(?:Users|home)/[A-Za-z0-9_.-]+/)")
 PRIVATE_IP = re.compile(r"\b(?:192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(?:1[6-9]|2\d|3[01])\.\d+\.\d+)\b")
@@ -60,11 +66,50 @@ def check_public_assets(root: Path) -> PublicAssetResult:
         return PublicAssetResult(False, [str(exc)])
     for path in files:
         rel = path.relative_to(root.resolve()).as_posix()
-        try:
-            text = path.read_text(encoding="utf-8-sig")
-        except UnicodeDecodeError:
-            issues.append(f"{rel}: invalid UTF-8")
-            continue
+        if path.suffix.lower() == ".png":
+            if rel not in PUBLIC_IMAGE_FILES:
+                issues.append(f"{rel}: unapproved image path")
+                continue
+            data = path.read_bytes()
+            if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+                issues.append(f"{rel}: invalid PNG signature")
+                continue
+            cursor = 8
+            chunks = []
+            metadata = []
+            try:
+                while cursor < len(data):
+                    size = struct.unpack_from(">I", data, cursor)[0]
+                    kind = data[cursor + 4:cursor + 8]
+                    payload = data[cursor + 8:cursor + 8 + size]
+                    stored_crc = struct.unpack_from(">I", data, cursor + 8 + size)[0]
+                    if len(payload) != size or zlib.crc32(kind + payload) & 0xFFFFFFFF != stored_crc:
+                        raise ValueError("invalid PNG chunk")
+                    chunks.append(kind)
+                    if kind == b"IHDR":
+                        width, height = struct.unpack_from(">II", payload)
+                        if not (0 < width <= 10000 and 0 < height <= 20000):
+                            raise ValueError("invalid PNG dimensions")
+                    if kind in {b"tEXt", b"iTXt", b"eXIf"}:
+                        metadata.append(payload.decode("utf-8", errors="ignore"))
+                    if kind == b"zTXt":
+                        keyword, packed = payload.split(b"\0", 1)
+                        if not packed or packed[0] != 0:
+                            raise ValueError("invalid PNG text compression")
+                        metadata.append(keyword.decode("utf-8", errors="ignore") + zlib.decompress(packed[1:]).decode("utf-8", errors="ignore"))
+                    cursor += 12 + size
+                if chunks[:1] != [b"IHDR"] or chunks[-1:] != [b"IEND"] or b"IDAT" not in chunks or cursor != len(data):
+                    raise ValueError("invalid PNG structure")
+            except (ValueError, struct.error, zlib.error):
+                issues.append(f"{rel}: invalid PNG structure")
+                continue
+            text = "\n".join(metadata)
+        else:
+            try:
+                text = path.read_text(encoding="utf-8-sig")
+            except UnicodeDecodeError:
+                issues.append(f"{rel}: invalid UTF-8")
+                continue
         if chr(0xFFFD) in text:
             issues.append(f"{rel}: replacement character")
         for pattern, label in [(PRIVATE_PATH, "machine path"), (PRIVATE_IP, "private IP"), (CREDENTIAL, "credential"), (SECRET_ASSIGNMENT, "secret assignment")]:

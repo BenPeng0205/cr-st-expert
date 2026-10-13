@@ -16,6 +16,18 @@ from build_public_package import build_package
 
 
 class PublicPackageTests(unittest.TestCase):
+    def test_corrupt_public_image_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "skill"
+            for p in public_files(ROOT):
+                target = root / p.relative_to(ROOT)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(p, target)
+            (root / "docs/images/cover-en.png").write_bytes(b"not a PNG")
+            result = check_public_assets(root)
+            self.assertFalse(result.passed)
+            self.assertTrue(any("invalid PNG signature" in issue for issue in result.issues))
+
     def test_public_set_excludes_private_state(self) -> None:
         paths = {p.relative_to(ROOT).as_posix() for p in public_files(ROOT)}
         self.assertIn("SKILL.md", paths)

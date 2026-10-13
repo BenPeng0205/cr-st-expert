@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "package_sha256": "96a3f3e9fad666cbe17ceeba5e498c3ea78059c95044fc12ad8e8ced706e5132",
-  "file_count": 85,
+  "package_sha256": "1a1d5ae5a98aca4a842e10c159b3ab56876b244c1a4a25de691d176d16c2c287",
+  "file_count": 119,
   "files": [
     {
       "path": "LICENSE",
@@ -10,13 +10,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "a16fe0911a3f822f02df4f91ad14caac1fbb722d98442ea5ca40f82f82c1a734",
-      "size": 8326
+      "sha256": "76d0fb440e9ad3314c5676a094d3881a80cbd6d8f4c9c997f273c5b3e1de26d8",
+      "size": 21427
     },
     {
       "path": "README.zh-CN.md",
-      "sha256": "bdba90775ac75f8eb53989ea88c7ecaae41d153c0d5ae78683c1cb875fa5adfc",
-      "size": 6073
+      "sha256": "ce430c8a86cc6b348b1badd60219b5511161745bf1170c6d273f53bf57c6677b",
+      "size": 20166
     },
     {
       "path": "SKILL.md",
@@ -52,6 +52,176 @@
       "path": "docs/golden-sample-policy.md",
       "sha256": "1c8c726268b5dfb8da551b4829aed7bed8272d4110802e4c705dbad704819aae",
       "size": 2687
+    },
+    {
+      "path": "docs/images/cover-en.png",
+      "sha256": "805e385a35d7619282531586c3558b89465c00ef430078ac19498785a60b34b2",
+      "size": 1548982
+    },
+    {
+      "path": "docs/images/cover-zh.png",
+      "sha256": "65fd88beb71bdc7ee0b07ac76aeb5fc72230a44f703c01c0b7f9b2eb5b55adda",
+      "size": 1602476
+    },
+    {
+      "path": "docs/images/rule-01-en-mobile.png",
+      "sha256": "68a91966e6463a672102ee5f9f47f60f099a64dec125ea62a2f353c1f416cca0",
+      "size": 155807
+    },
+    {
+      "path": "docs/images/rule-01-en.png",
+      "sha256": "2f2961c7e2b8c15ab4d5dfbcfb4d3cf774bff09e7f79e4af5084db5ea99b586f",
+      "size": 119535
+    },
+    {
+      "path": "docs/images/rule-01-zh-mobile.png",
+      "sha256": "9f23116bc2a90c2ba334675287920c9d5a361e32f49a1d103f86287a11747ac0",
+      "size": 177662
+    },
+    {
+      "path": "docs/images/rule-01-zh.png",
+      "sha256": "9777b8b18caeca10d50c75fdaba2e51dd56cf1de77c46502d12965f2b24eb59f",
+      "size": 147386
+    },
+    {
+      "path": "docs/images/rule-02-en-mobile.png",
+      "sha256": "83e47deef1053734b084a01c2b2d5400cfe7dead1285e224ca677330155f4469",
+      "size": 96801
+    },
+    {
+      "path": "docs/images/rule-02-en.png",
+      "sha256": "0ca2e52a40bc8acf5ba55e515906debd041d1e49dcf2b1d8e50abb5e6c672238",
+      "size": 81597
+    },
+    {
+      "path": "docs/images/rule-02-zh-mobile.png",
+      "sha256": "b60366dfb82763ea1436a59a52a9c5f438a95466ae32decce30bb6fcaa9e5c88",
+      "size": 102681
+    },
+    {
+      "path": "docs/images/rule-02-zh.png",
+      "sha256": "164370f51cda0d234c81518e722a169fdba8aa14969480dc7aab041517d4b6a0",
+      "size": 94219
+    },
+    {
+      "path": "docs/images/rule-03-en-mobile.png",
+      "sha256": "a5996f23a5568d9b91ca8805d4391fb6e7810561586317595d7b336b708df93b",
+      "size": 152187
+    },
+    {
+      "path": "docs/images/rule-03-en.png",
+      "sha256": "41153a21c76e7828527c4986738be484facaf62fd90645912af9e7a5df5e17e8",
+      "size": 118040
+    },
+    {
+      "path": "docs/images/rule-03-zh-mobile.png",
+      "sha256": "4f845311322580d4fe607f583a65f2dba1e024f9e1708a82e90c8a8b6a6cc3bb",
+      "size": 185948
+    },
+    {
+      "path": "docs/images/rule-03-zh.png",
+      "sha256": "2d34db5f99b1068f265cfcb5e91dcf4899568aececcb0c5bf40dfdb3310d9b06",
+      "size": 162258
+    },
+    {
+      "path": "docs/images/rule-04-en-mobile.png",
+      "sha256": "5ccc3cc00dfc0ffb144c7fa8807bef5f317f047b4c4c513f497478909fafdbc7",
+      "size": 112673
+    },
+    {
+      "path": "docs/images/rule-04-en.png",
+      "sha256": "f565d77b768cde5e852dc0f316fe71a2330dafff2f3757f922a8a3e79440de8d",
+      "size": 88688
+    },
+    {
+      "path": "docs/images/rule-04-zh-mobile.png",
+      "sha256": "7e3ed34c28c1bde994c84a60d5ccd1ec47141ed3cf8646fadf9a11d0bbebbe5f",
+      "size": 122310
+    },
+    {
+      "path": "docs/images/rule-04-zh.png",
+      "sha256": "bfb3fafef3d1fbe1bd91dd9a9e79d26d1c04fb4b0e1a734298645f2fa35fb1fe",
+      "size": 106315
+    },
+    {
+      "path": "docs/images/rule-05-en-mobile.png",
+      "sha256": "d7976e4c867c8f0061c26c8ca6947acdc2206a862f08d035f6ebdc6ac1bb480b",
+      "size": 99461
+    },
+    {
+      "path": "docs/images/rule-05-en.png",
+      "sha256": "45df7cc7446f1f29ec8302369dc2330ccfc72354ecd0cc5010f1c99370bb3b29",
+      "size": 81441
+    },
+    {
+      "path": "docs/images/rule-05-zh-mobile.png",
+      "sha256": "609f8e2bcd963708f32d529b8541b93fabb86552bceb8ff4234933c6fb12013a",
+      "size": 104296
+    },
+    {
+      "path": "docs/images/rule-05-zh.png",
+      "sha256": "cf30b00f77a9ef4b00fc03d4ff6fa36cb380b16b38207a6a865c990590048542",
+      "size": 94918
+    },
+    {
+      "path": "docs/images/rule-06-en-mobile.png",
+      "sha256": "0b3d79245ab89feab1c3e32a3048e96665fe8d8aba437020acd59b7a544cecb3",
+      "size": 142311
+    },
+    {
+      "path": "docs/images/rule-06-en.png",
+      "sha256": "510db8cf4d967f02cce12a0c0954a2806c7e24d2063cef1e460004b13f6444b5",
+      "size": 103650
+    },
+    {
+      "path": "docs/images/rule-06-zh-mobile.png",
+      "sha256": "aef437e8883ddd31cbe3d902d99e61a7a283c779f33b5968bc21e5cd66e1a6f2",
+      "size": 139736
+    },
+    {
+      "path": "docs/images/rule-06-zh.png",
+      "sha256": "d5415250c752ecb2f40a5ed647f4c1ed955027033339d9a86742b111c0f45a40",
+      "size": 110835
+    },
+    {
+      "path": "docs/images/rule-07-en-mobile.png",
+      "sha256": "6b3a81b21f6e758825e2b4f190b97b40c01bd7f7597a254cd97c76f2f54708ad",
+      "size": 83897
+    },
+    {
+      "path": "docs/images/rule-07-en.png",
+      "sha256": "b7fd9e84676675e1df98d5c3d07de93664524a9665a618b8702b9737230c04ee",
+      "size": 71737
+    },
+    {
+      "path": "docs/images/rule-07-zh-mobile.png",
+      "sha256": "0bc6c77adee5ab257f4164e977af088e026ed5da416908dcb8180920cb0a452f",
+      "size": 92503
+    },
+    {
+      "path": "docs/images/rule-07-zh.png",
+      "sha256": "4e8be955ae400502d6ffb4cb634774ec231ec014529bb429601825c823063a09",
+      "size": 85896
+    },
+    {
+      "path": "docs/images/rule-08-en-mobile.png",
+      "sha256": "d97976442ecd586a141f4d3487eaa87a4519bc4ed64899397c754231c0197d04",
+      "size": 119891
+    },
+    {
+      "path": "docs/images/rule-08-en.png",
+      "sha256": "f500eb2d5cfb4a11b6d8b19b9c653bc3d4299f82d2106113b96becab35058d1a",
+      "size": 99676
+    },
+    {
+      "path": "docs/images/rule-08-zh-mobile.png",
+      "sha256": "03f1903e4b6ffaf73e4b8cd333491842d27d683ded4ad23788a89ca8a0da9e92",
+      "size": 118181
+    },
+    {
+      "path": "docs/images/rule-08-zh.png",
+      "sha256": "b0ff8a7d58fafe16899ccc6d58d3aaaf35eb313bf3bae72980b172f47163a160",
+      "size": 108869
     },
     {
       "path": "docs/product-contract.md",
@@ -335,13 +505,13 @@
     },
     {
       "path": "scripts/public_asset_guard.py",
-      "sha256": "46b87af609eb0c52f00f94d43c9a560b2149107fba8376e4cca256eae2d6e25a",
-      "size": 3908
+      "sha256": "a7edc04a31bedd46bf32b2c2fa74597744494c19f11e63a6a063265e4c22a48c",
+      "size": 6383
     },
     {
       "path": "scripts/repository_consistency.py",
-      "sha256": "bb2b0f4961473a264412bb1f46aff1e592cd5549e76259316fac79624c959329",
-      "size": 7033
+      "sha256": "44e3536026d6a522a212d0800c3d060ef2d91d45f19cb2eeb80220ea51ae5725",
+      "size": 7581
     },
     {
       "path": "scripts/st_semantic_linter.py",
@@ -405,13 +575,13 @@
     },
     {
       "path": "test/test_public_package.py",
-      "sha256": "8249b1ef57f3fdd5fa71faa29066a4d218ff132f78e17799814e34eb9ecd286a",
-      "size": 2510
+      "sha256": "a72eece6645e289916312b41b015abf1c4ad13e46b489c306be7f26b81c05b20",
+      "size": 3122
     },
     {
       "path": "test/test_repository_consistency.py",
-      "sha256": "c57550f95e6f125f44908fd96858e358e322e5b24bbece8ea19274f3de7073b1",
-      "size": 2891
+      "sha256": "7e8765a37bc5005c2b931acbf92ec412fd61eb12fe550fa2fb86f11e49fe316b",
+      "size": 3494
     },
     {
       "path": "test/test_skill_hooks.py",

@@ -113,6 +113,15 @@ def _expected_variable_prefix(var_type: str, block_header: str) -> str | None:
 
 
 def _check_hungarian_declarations(rel_path: Path, text: str, issues: list[str]) -> None:
+    # Explicit teaching counterexamples retain their line numbers, but are not
+    # expected to conform to the naming rule they demonstrate.
+    if rel_path.suffix.lower() == ".md":
+        text = re.sub(
+            r"```(?:st|iecst) before\n.*?```",
+            lambda match: "\n" * match.group(0).count("\n"),
+            text,
+            flags=re.DOTALL,
+        )
     block_header: str | None = None
     for line_number, line in enumerate(text.splitlines(), start=1):
         stripped = line.strip()
@@ -146,6 +155,8 @@ def check_repository(skill_dir: Path) -> ConsistencyResult:
 
     for path in _iter_files(skill_dir):
         rel_path = path.relative_to(skill_dir)
+        if path.suffix.lower() == ".png" and rel_path.parts[:2] == ("docs", "images"):
+            continue  # The public-asset guard validates approved PNG files and metadata.
         text = _read_text(path)
 
         if path.suffix.lower() == ".md":

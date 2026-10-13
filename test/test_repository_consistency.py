@@ -12,6 +12,18 @@ from repository_consistency import check_repository
 
 
 class RepositoryConsistencyTests(unittest.TestCase):
+    def test_teaching_counterexample_does_not_exempt_after_code(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "README.md").write_text(
+                "```st before\nVAR_INPUT\n    enable : BOOL;\nEND_VAR\n```\n"
+                "```st\nVAR_OUTPUT\n    error : BOOL;\nEND_VAR\n```\n",
+                encoding="utf-8",
+            )
+            result = check_repository(root)
+        self.assertFalse(any("variable 'enable'" in i for i in result.issues))
+        self.assertTrue(any("variable 'error'" in i for i in result.issues))
+
     def test_rejects_stale_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
